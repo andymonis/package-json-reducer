@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
  * # package-json-reducer
  * Removes entries from package.json for safer externalisation.
@@ -6,6 +8,8 @@
  */
 
 var fs = require('fs');
+
+console.log( process.cwd() );
 
 let inputPackageJson = undefined;
 let stripParams = undefined;
