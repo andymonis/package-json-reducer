@@ -7,7 +7,7 @@
     "//usage": "node index.js <input package.json> -s param-to-strip|param-to-strip... -o <output package.json>",
     "test-strip": "node index.js -s 'config devDependencies directories scripts' -o test/package.reduced test/package.json",
     "test": "npm run test-strip && ls -al test/package.reduced && exit 1",
-    "build": "npm --no-git-tag-version version patch"
+    "publish": "npm version patch && npm publish"
   },
   "repository": {
     "type": "git",
