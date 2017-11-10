@@ -1,0 +1,26 @@
+{
+    "name": "aos",
+    "version": "1.0.0",
+    "description": "pumpco frontend application platform ",
+    "main": "live.js",
+    "dependencies": {
+        "JSONSelect": "^0.4.0",
+        "d3": "^3.5.17",
+        "deploy": "^1.0.3",
+        "inobounce": "^0.1.5",
+        "jquery": "^2.2.4",
+        "jquery.scrollintoview": "^1.9.4",
+        "knockout": "^3.4.2",
+        "localforage": "^1.5.3",
+        "requirejs": "^2.3.5"
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://git.healthcog.org/pumpco/PumpFace.git"
+    },
+    "keywords": [
+        "aos"
+    ],
+    "author": "Andy Monis",
+    "license": "ISC"
+}
