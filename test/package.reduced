@@ -1,26 +1,22 @@
 {
-    "name": "aos",
+    "name": "pumpkin-webapp",
     "version": "1.0.0",
-    "description": "pumpco frontend application platform ",
-    "main": "live.js",
-    "dependencies": {
-        "JSONSelect": "^0.4.0",
-        "d3": "^3.5.17",
-        "deploy": "^1.0.3",
-        "inobounce": "^0.1.5",
-        "jquery": "^2.2.4",
-        "jquery.scrollintoview": "^1.9.4",
-        "knockout": "^3.4.2",
-        "localforage": "^1.5.3",
-        "requirejs": "^2.3.5"
-    },
-    "repository": {
-        "type": "git",
-        "url": "http://git.healthcog.org/pumpco/PumpFace.git"
-    },
+    "description": "Web UI for the Pumpkin Engineer",
+    "main": "src/app.js",
     "keywords": [
-        "aos"
+        "pumpkin"
     ],
     "author": "Andy Monis",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "bootstrap": "3.3.2",
+        "knockout": "3.5.0-beta",
+        "systemjs": "0.21.0"
+    },
+    "jspm": {
+        "directories": {
+            "test": "tests"
+        },
+        "dependencies": {}
+    }
 }

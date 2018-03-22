@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/index.js", 
             "args": [
                 "-s",
-                "config devDependencies directories scripts",
+                "config devDependencies directories scripts jspm.devDependencies",
                 "-o",
                 "test/package.reduced",
                 "test/package.json"

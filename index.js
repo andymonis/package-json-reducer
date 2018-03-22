@@ -43,9 +43,17 @@ let jsonInput = JSON.parse( fInput );
 // Note: need to strip '' from around the params
 let _params = stripParams.split( " " );
 for( let i=0; i<_params.length; i++ ){
-    if( jsonInput[ _params[ i ] ] ){
-        console.log( `removing [${_params[ i ]}]` );
-        delete jsonInput[ _params[ i ] ];
+    // delete jspm.dev
+    if( _params[ i ].indexOf( "." ) > -1 ){
+        let keys = _params[ i ].split( "." );
+
+        if( jsonInput[ keys[ 0 ] ] && jsonInput[ keys[ 0 ] ][ keys[ 1 ] ] )
+        delete jsonInput[ keys[ 0 ] ][ keys[ 1 ] ];
+    } else {
+        if( jsonInput[ _params[ i ] ] ){
+            console.log( `removing [${_params[ i ]}]` );
+            delete jsonInput[ _params[ i ] ];
+        }
     }
 }
 

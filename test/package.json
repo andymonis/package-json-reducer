@@ -1,105 +1,47 @@
 {
-  "name": "aos",
-  "version": "1.0.0",
-  "description": "pumpco frontend application platform ",
-  "main": "live.js",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
-  "dependencies": {
-    "JSONSelect": "^0.4.0",
-    "d3": "^3.5.17",
-    "deploy": "^1.0.3",
-    "inobounce": "^0.1.5",
-    "jquery": "^2.2.4",
-    "jquery.scrollintoview": "^1.9.4",
-    "knockout": "^3.4.2",
-    "localforage": "^1.5.3",
-    "requirejs": "^2.3.5"
-  },
-  "devDependencies": {
-    "concat": "^1.0.3",
-    "cpy-cli": "^1.0.1",
-    "install": "^0.10.1",
-    "mkdirp": "^0.5.1",
-    "ncp": "^2.0.0",
-    "npm": "^5.5.1",
-    "rimraf": "^2.6.2",
-    "uglify-js": "^3.1.8"
-  },
-  "config": {
-    "buildNumber": "0.02.00",
-    "dirIotaa": "../../iotaa",
-    "dirLib": "lib",
-    "dirNodeModules": "node_modules",
-    "dirBuild": "deploy",
-    "dirBuildSdk": "deploy/sdk"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "//PUMPFACE-BUILD": "The new PumpFace build process entirely in NPM",
-    "clean": "rimraf ./$npm_package_config_dirBuild dist && mkdir $npm_package_config_dirBuild",
-    "//UPDATE": "Updates the project with any non-npm managed dependencies",
-    "update_camelet": "mkdirp $npm_package_config_dirLib/camelet && ncp ../Camelet/deploy $npm_package_config_dirLib/camelet",
-    "update_datejs": "mkdirp $npm_package_config_dirLib/datejs && cpy ../../datejs/deploy/date-en.js $npm_package_config_dirLib/datejs && cpy ../../datejs/deploy/date.js $npm_package_config_dirLib/datejs && ncp ../../datejs/deploy/globalization $npm_package_config_dirLib/datejs/globalization",
-    "update_phil_resources": "ncp ../Gui/deploy/svg $npm_package_config_dirLib/phil/resources/svg && cpy ../Gui/deploy/icons.png $npm_package_config_dirLib/phil/resources && cpy ../Gui/deploy/icons-hd.png $npm_package_config_dirLib/phil/resources && cpy ../Gui/deploy/phil-1.0.0.css $npm_package_config_dirLib/phil/resources&& cpy ../Gui/deploy/phil-1.0.0-debug.css $npm_package_config_dirLib/phil/resources",
-    "update_phil_templates": "ncp ../Gui/deploy/templates $npm_package_config_dirLib/phil/templates",
-    "update_phil_sdk": "cpy ../Gui/deploy/phil-1.1.0-debug.js $npm_package_config_dirLib/phil/sdk && cpy ../Gui/deploy/phil-1.1.0.js $npm_package_config_dirLib/phil/sdk",
-    "update_phil": "mkdirp $npm_package_config_dirLib/phil/sdk && mkdirp $npm_package_config_dirLib/phil/resources && mkdirp $npm_package_config_dirLib/phil/templates && npm run update_phil_sdk && npm run update_phil_templates && npm run update_phil_resources",
-    "update_jss": "mkdirp $npm_package_config_dirLib/jss && cpy ../src/deploy/jss-debug.js $npm_package_config_dirLib/jss && cpy ../src/deploy/jss.js $npm_package_config_dirLib/jss",
-    "update_the": "mkdirp $npm_package_config_dirLib/the && cpy ../src/deploy/the-debug.js $npm_package_config_dirLib/the && cpy ../src/deploy/the.js $npm_package_config_dirLib/the",
-    "update": "npm run update_phil && npm run update_datejs && npm run update_camelet && npm run update_jss && npm run update_the",
-    "//DIST": "Builds the /dist dir with all of the required libraries",
-    "dist_bootcore": "cpy 'src/bootcore.js' $npm_package_config_dirBuildSdk --rename bootcore-$npm_package_config_buildNumber.js",
-    "dist_bootstrap": "cpy 'src/bootstrap.js' $npm_package_config_dirBuildSdk --rename bootstrap-$npm_package_config_buildNumber.js",
-    "dist_fixtures": "ncp fixtures $npm_package_config_dirBuild/fixtures",
-    "dist_groovy": "cpy conf/pumpface.groovy $npm_package_config_dirBuild",
-    "dist_jquery": "cpy node_modules/jquery/dist/jquery.min.js $npm_package_config_dirBuildSdk --rename jquery.js && cpy node_modules/jquery.scrollintoview/jquery.scrollintoview.js $npm_package_config_dirBuildSdk",
-    "dist_lang": "cpy lang/* $npm_package_config_dirBuild/lang",
-    "dist_localforage": "cpy node_modules/localforage/dist/localforage.min.js $npm_package_config_dirBuildSdk --rename localforage.js",
-    "dist_manifest": "cpy manifest/* $npm_package_config_dirBuild/manifest",
-    "dist_phil": "ncp $npm_package_config_dirLib/phil/sdk $npm_package_config_dirBuild/sdk && ncp $npm_package_config_dirLib/phil/resources $npm_package_config_dirBuild/resources && ncp $npm_package_config_dirLib/phil/templates $npm_package_config_dirBuild/templates",
-    "dist_polyfils": "cpy lib/polyfils/es6-array.js $npm_package_config_dirBuildSdk --rename es6-array-debug.js && cpy lib/polyfils/es6-collections.js $npm_package_config_dirBuildSdk --rename es6-collections-debug.js",
-    "dist_requirejs": "cpy node_modules/requirejs/require.js $npm_package_config_dirBuildSdk --rename require-debug.js",
-    "dist_views": "cpy 'views/*.html' $npm_package_config_dirBuild",
-    "dist_css": "cpy resources/core.css $npm_package_config_dirBuild/resources && cpy resources/animate.css $npm_package_config_dirBuild/resources",
-    "dist_lib": "ncp $npm_package_config_dirLib $npm_package_config_dirBuild/lib",
-    "dist_nodemodules": "ncp $npm_package_config_dirNodeModules $npm_package_config_dirBuild/node_modules",
-    "dist_packagejson": "cpy 'package.json' $npm_package_config_dirBuild",
-    "dist_npminstall": "npm --prefix ./deploy install --production",
-    "//DIST_HYDRA": "Legacy build for OLD app flows mainly. Stems from Sean work ( a long time ago )",
-    "dist_hydra": "concat -o $npm_package_config_dirBuild/sdk/hydra-debug.js src/pumpco/gui/questionnaire/appflow.js src/pumpco/gui/questionnaire/appmodel.js src/pumpco/gui/questionnaire/appprogress.js src/pumpco/components/actions.js src/pumpco/components/ago.js src/pumpco/components/base.js src/pumpco/components/forms.js",
-    "//MINIFY": "minification of any files that are not provided compressed",
-    "minify_bootstrap": "uglifyjs $npm_package_config_dirBuild/sdk/bootstrap-$npm_package_config_buildNumber.js -o $npm_package_config_dirBuild/sdk/bootstrap-$npm_package_config_buildNumber.js",
-    "minify_polyfils": "uglifyjs $npm_package_config_dirBuild/sdk/es6-array-debug.js -o $npm_package_config_dirBuild/sdk/es6-array.js && uglifyjs $npm_package_config_dirBuild/sdk/es6-collections-debug.js -o $npm_package_config_dirBuild/sdk/es6-collections.js",
-    "minify_requirejs": "uglifyjs $npm_package_config_dirBuild/sdk/require-debug.js -o $npm_package_config_dirBuild/sdk/require.js",
-    "minify_hydra": "uglifyjs $npm_package_config_dirBuild/sdk/hydra-debug.js -o $npm_package_config_dirBuild/sdk/hydra.js",
-    "minify_require": "uglifyjs $npm_package_config_dirBuild/sdk/require-debug.js -o $npm_package_config_dirBuild/sdk/require.js",
-    "minify_pumpfaceos": "uglifyjs $npm_package_config_dirBuild/sdk/pumpfaceos-debug.js -o $npm_package_config_dirBuild/sdk/pumpfaceos.js",
-    "//MAIN ": "Main build startpoint",
-    "minify": "npm run minify_pumpfaceos && npm run minify_bootstrap && npm run minify_polyfils && npm run minify_requirejs && npm run minify_hydra",
-    "compile": "r.js -o build.js optimize=none && cpy deploy/pumpfaceos.js $npm_package_config_dirBuild/sdk --rename pumpfaceos-debug.js",
-    "dist-src-only": "npm run dist_views && npm run dist_bootstrap && npm run dist_bootcore",
-    "dist": "npm run dist-src-only && npm run dist_fixtures && npm run dist_groovy && npm run dist_manifest && npm run dist_lang && npm run dist_requirejs && npm run dist_localforage && npm run dist_jquery && npm run dist_phil && npm run dist_polyfils && npm run dist_css && npm run dist_hydra && npm run dist_lib && npm run dist_packagejson",
-    "fast": "npm run compile && npm run dist-src-only",
-    "//BUILD": "Cleans the deploy folder, compiles, builds so that the deploy folder is complete for deployment",
-    "build": "npm run clean && npm run compile && npm run dist && npm run minify",
-    "//LOCAL": "NPM installs production dependencies, copies local 'other' build dependencies ( iotaa ) and watches.",
-    "local-iotaa": "ncp $npm_package_config_dirIotaa/resources $npm_package_config_dirBuild/resources",
-    "dev":"npm run dist_npminstall && npm run local-iotaa",
-    "prod": "npm run dev && npm run minify",
-    "//DOCUMENT": "TODO: run auto-documenter",
-    "//RELEASE": "Builds the release version of the project. TODO: REMOVE NPM files from build in time",
-    "release": "npm run build && npm run dist_npminstall"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://git.healthcog.org/pumpco/PumpFace.git"
-  },
-  "keywords": [
-    "aos"
-  ],
-  "author": "Andy Monis",
-  "license": "ISC"
-}
+    "name": "pumpkin-webapp",
+    "version": "1.0.0",
+    "description": "Web UI for the Pumpkin Engineer",
+    "main": "src/app.js",
+    "directories": {
+      "test": "tests",
+      "packages": "jspm_packages"
+    },
+    "scripts": {
+      "install": "jspm install",
+      "1.clean": "rimraf dist && mkdir dist",
+      "// RELEASEING": "Scripts for releasing",
+      "release-rewrite-html-app.js": "replace-in-file '<script>' '<!-- include bundle -->\n<script src=\"app.js\"></script>\n<script>' dist/app.html",
+      "release-rewrite-html": "npm run release-rewrite-html-app.js",
+      "release-config.js": "cp config.js dist/config.js",
+      "release-app": "jspm bundle src/app dist/app.js && uglifyjs dist/app.js -o dist/app.min.js && cp app.html dist/app.html && cp -R res dist",
+      "release-package.json": "cp package.json dist && cp package-lock.json dist",
+      "release-legacy": "cp index.html dist && cp script.js dist && cp pumpkin.css dist",
+      "release": "npm install && npm run 1.clean && npm run release-app && npm run release-config.js && npm run release-rewrite-html && npm run release-package.json && npm run release-legacy"
+    },
+    "keywords": [
+      "pumpkin"
+    ],
+    "author": "Andy Monis",
+    "license": "ISC",
+    "devDependencies": {
+      "replace-in-file": "^3.2.0"
+    },
+    "dependencies": {
+      "bootstrap": "3.3.2",
+      "knockout": "3.5.0-beta",
+      "systemjs": "0.21.0"
+    },
+    "jspm": {
+      "directories": {
+        "test": "tests"
+      },
+      "dependencies": {},
+      "devDependencies": {
+        "babel": "npm:babel-core@^5.8.24",
+        "babel-runtime": "npm:babel-runtime@^5.8.24",
+        "core-js": "npm:core-js@^1.1.4"
+      }
+    }
+  }
+  
